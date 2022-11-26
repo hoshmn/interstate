@@ -1,3 +1,4 @@
+import { Slider } from "@mui/material";
 import { range } from "lodash";
 import React from "react";
 // import { Slider } from "@mui/material";
@@ -21,6 +22,7 @@ export default function ControlString({
   );
 
   const yearSelect = (
+    <>
     <select value={year} onChange={(e) => selectYear(e.target.value)}>
       {range(5, 20)
         .map((n) => String(n).padStart(2, 0))
@@ -30,6 +32,17 @@ export default function ControlString({
           </option>
         ))}
     </select>
+      <Slider
+  aria-label="Temperature"
+  defaultValue={2000+year}
+  // getAriaValueText={valuetext}
+  valueLabelDisplay="auto"
+  step={1}
+  marks
+  min={2005}
+  max={2019}
+/>
+    </>
   );
 
   const weightedSet = (
@@ -51,6 +64,7 @@ export default function ControlString({
       How many people moved {metricSelect} {selectedState}{" "}
       {metric === "between" ? "net" : metric} in {yearSelect}? {weightedSet}
       {/* <Slider /> */}
+{/* <Slider defaultValue={30} step={10} marks min={10} max={110} disabled /> */}
     </div>
   );
 }
